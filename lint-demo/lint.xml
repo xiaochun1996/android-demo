@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<lint>
+    <issue id="GradleDependency" severity="ignore" />
+    <issue id="UnusedResources" severity="ignore" />
+    <!--  忽略整个 issue 的部分  -->
+    <issue id="UnusedAttribute">
+        <ignore regexp="lineHeight"/>
+    </issue>
+</lint>

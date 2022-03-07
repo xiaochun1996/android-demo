@@ -1,0 +1,43 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'com.android.lint'
+
+lintOptions {
+    htmlReport true
+    htmlOutput file("lint-report.html")
+    textReport true
+    absolutePaths false
+    ignoreTestSources true
+}
+
+//jar {
+//    manifest {
+//        // Only use the "-v2" key here if your checks have been updated to the
+//        // new 3.0 APIs (including UAST)
+////        attributes("Lint-Registry-v2": "com.example.lint.checks.SampleIssueRegistry")
+//        attributes("Lint-Registry-v3": "com.jock.lint.MyIssueRegistry")
+//    }
+//}
+
+dependencies {
+    // For a description of the below dependencies, see the main project README
+    compileOnly ("com.android.tools.lint:lint-api:$lintVersion"){
+        exclude group: "org.jetbrains.kotlin"
+    }
+    // You typically don't need this one:
+    compileOnly ("com.android.tools.lint:lint-checks:$lintVersion"){
+        exclude group: "org.jetbrains.kotlin"
+    }
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+
+    testImplementation "junit:junit:4.13.2"
+    testImplementation ("com.android.tools.lint:lint:$lintVersion"){
+        exclude group: "org.jetbrains.kotlin"
+    }
+    testImplementation ("com.android.tools.lint:lint-tests:$lintVersion"){
+        exclude group: "org.jetbrains.kotlin"
+    }
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"

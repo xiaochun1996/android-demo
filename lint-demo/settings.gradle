@@ -1,0 +1,4 @@
+rootProject.name = "lint-demo"
+include ':app'
+include ':check'
+include ':library'

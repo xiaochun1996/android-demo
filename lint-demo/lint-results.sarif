@@ -1,0 +1,88 @@
+{
+    "$schema" : "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+    "version" : "2.1.0",
+    "runs" : [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Android Lint",
+                    "fullName": "Android Lint (in gradle)",
+                    "version": "7.1.0",
+                    "semanticVersion": "7.1.0",
+                    "organization": "Google",
+                    "informationUri": "https://developer.android.com/studio/write/lint",
+                    "fullDescription": {
+                        "text": "Static analysis originally for Android source code but now performing general analysis"
+                    },
+                    "language": "en-US",
+                    "rules": [
+                        {
+                            "id": "HardcodedText",
+                            "shortDescription": {
+                                "text": "Hardcoded text"
+                            },
+                            "fullDescription": {
+                                "text": "Hardcoding text attributes directly in layout files is bad for several reasons:\n\n* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)\n\n* The application cannot be translated to other languages by just adding new translations for existing string resources.\n\nThere are quickfixes to automatically extract this hardcoded string into a resource lookup."
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 60
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Internationalization"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "originalUriBaseIds": {
+                "%SRCROOT%": {
+                    "uri": "file:///Volumes/Project/github/lint-demo/"
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "HardcodedText",
+                    "ruleIndex": 0,
+                    "message": {
+                        "text": "Hardcoded string \"测试 Lint\", should use @string resource",
+                        "markdown": "Hardcoded string \"测试 Lint\", should use `@string` resource"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/res/layout/activity_main.xml"
+                                },
+                                "region": {
+                                    "startLine": 8,
+                                    "startColumn": 9,
+                                    "endLine": 8,
+                                    "endColumn": 31,
+                                    "charOffset": 252,
+                                    "charLength": 22,
+                                    "snippet": {
+                                        "text": "android:text=\"测试 Lint\""
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 6,
+                                    "endLine": 11,
+                                    "snippet": {
+                                        "text": "\n    <TextView\n        android:text=\"测试 Lint\"\n        android:id=\"@+id/tv_content\""
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "1f5a492ef46943dd"
+                    }
+                }
+            ]
+        }
+    ]
+}
